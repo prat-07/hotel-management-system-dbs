@@ -13,6 +13,7 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import jdk.internal.org.jline.utils.OSUtils;
 
 import java.io.IOException;
 import java.net.URL;
@@ -20,7 +21,7 @@ import java.util.Arrays;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
-public class RoomController {
+public class RoomController implements Initializable{
     @FXML
     private Button addBtn;
 
@@ -40,7 +41,7 @@ public class RoomController {
     private TableColumn<?, ?> colRType;
 
     @FXML
-    private ComboBox<?> comboBoxRType;
+    private ComboBox<RoomType> comboBoxRType;
 
     @FXML
     private Button remBtn;
@@ -70,4 +71,9 @@ public class RoomController {
         stage.centerOnScreen();
     }
 
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        RoomType[] roomTypes = RoomType.values();
+        comboBoxRType.getItems().addAll(roomTypes);
+    }
 }
