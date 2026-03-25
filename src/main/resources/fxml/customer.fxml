@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pratham.controller.CustomerController">
+   <center>
+      <TableView prefHeight="331.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+        <columns>
+          <TableColumn fx:id="colCID" prefWidth="95.5" text="Customer ID" />
+          <TableColumn fx:id="colFName" prefWidth="84.0" text="First Name" />
+            <TableColumn fx:id="colLName" prefWidth="75.0" text="Last Name" />
+            <TableColumn fx:id="colPNo" prefWidth="75.0" text="Phone No." />
+            <TableColumn fx:id="colStreetNo" prefWidth="75.0" text="Street No." />
+            <TableColumn fx:id="colCity" prefWidth="62.0" text="City" />
+            <TableColumn fx:id="colState" prefWidth="50.5" text="State" />
+            <TableColumn fx:id="colPincode" prefWidth="112.5" text="Pincode" />
+        </columns>
+         <columnResizePolicy>
+            <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+         </columnResizePolicy>
+      </TableView>
+   </center>
+   <top>
+      <AnchorPane prefHeight="444.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+         <children>
+            <Label layoutX="222.0" layoutY="39.0" text="Manage Customers">
+               <font>
+                  <Font name="SF Pro Display Bold" size="40.0" />
+               </font>
+            </Label>
+            <Button fx:id="backButton" layoutX="14.0" layoutY="50.0" mnemonicParsing="false" onAction="#gotoDashboard" opacity="0.7" text="⬅ Dashboard">
+               <font>
+                  <Font name="SF Pro Display Regular" size="13.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <AnchorPane layoutX="129.0" layoutY="132.0">
+               <children>
+                  <GridPane layoutY="15.0">
+                     <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                     </columnConstraints>
+                     <rowConstraints>
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                        <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                     </rowConstraints>
+                     <children>
+                        <Label text="Customer ID:">
+                           <font>
+                              <Font name="CaskaydiaCove NF Regular" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label text="First Name:" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="CaskaydiaCove NF Regular" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label text="Last Name:" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="CaskaydiaCove NF Regular" size="13.0" />
+                           </font>
+                        </Label>
+                        <Label text="Phone No:" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="CaskaydiaCove NF Regular" size="13.0" />
+                           </font>
+                        </Label>
+                        <TextField fx:id="textCIdAdd" prefWidth="150.0" promptText="Aadhaar No." GridPane.columnIndex="1">
+                           <font>
+                              <Font name="CaskaydiaCove NF Regular" size="13.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="textFName" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                           <font>
+                              <Font name="CaskaydiaCove NF Regular" size="13.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="textLName" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                           <font>
+                              <Font name="CaskaydiaCove NF Regular" size="13.0" />
+                           </font>
+                        </TextField>
+                        <TextField fx:id="textPNo" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                           <font>
+                              <Font name="CaskaydiaCove NF Regular" size="13.0" />
+                           </font>
+                        </TextField>
+                     </children>
+                  </GridPane>
+                  <AnchorPane layoutX="279.0">
+                     <children>
+                        <GridPane>
+                           <columnConstraints>
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                           </columnConstraints>
+                           <rowConstraints>
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                              <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                           </rowConstraints>
+                           <children>
+                              <Label text="Address Details">
+                                 <font>
+                                    <Font name="CaskaydiaCove NF Bold" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Street No:" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="CaskaydiaCove NF Regular" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label text="City:" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font name="CaskaydiaCove NF Regular" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label text="State:" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font name="CaskaydiaCove NF Regular" size="13.0" />
+                                 </font>
+                              </Label>
+                              <Label text="Pincode:" GridPane.rowIndex="4">
+                                 <font>
+                                    <Font name="CaskaydiaCove NF Regular" size="13.0" />
+                                 </font>
+                              </Label>
+                              <TextField fx:id="textStreet" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                 <font>
+                                    <Font name="CaskaydiaCove NF Regular" size="13.0" />
+                                 </font>
+                              </TextField>
+                              <TextField fx:id="textCity" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                 <font>
+                                    <Font name="CaskaydiaCove NF Regular" size="13.0" />
+                                 </font>
+                              </TextField>
+                              <TextField fx:id="textState" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="3">
+                                 <font>
+                                    <Font name="CaskaydiaCove NF Regular" size="13.0" />
+                                 </font>
+                              </TextField>
+                              <TextField fx:id="textPincode" prefWidth="150.0" GridPane.columnIndex="1" GridPane.rowIndex="4">
+                                 <font>
+                                    <Font name="CaskaydiaCove NF Regular" size="13.0" />
+                                 </font>
+                              </TextField>
+                           </children>
+                        </GridPane>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </AnchorPane>
+            <Separator layoutX="88.0" layoutY="311.0" prefHeight="8.0" prefWidth="625.0" />
+            <Button fx:id="btnAddCustomer" layoutX="129.0" layoutY="275.0" mnemonicParsing="false" text="Add Customer">
+               <font>
+                  <Font name="CaskaydiaCove NF Regular" size="12.0" />
+               </font>
+            </Button>
+            <Label layoutX="129.0" layoutY="342.0" text="Customer ID:">
+               <font>
+                  <Font name="CaskaydiaCove NF Regular" size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="textCIdRem" layoutX="222.0" layoutY="338.0" prefWidth="150.0" promptText="Aadhaar No.">
+               <font>
+                  <Font name="CaskaydiaCove NF Regular" size="13.0" />
+               </font>
+            </TextField>
+            <Button fx:id="btnRemCustomer" layoutX="129.0" layoutY="374.0" mnemonicParsing="false" text="Remove Customer">
+               <font>
+                  <Font name="CaskaydiaCove NF Regular" size="12.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+   </top>
+</BorderPane>

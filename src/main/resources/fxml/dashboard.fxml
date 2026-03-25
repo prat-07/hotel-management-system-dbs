@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="dashboardAnchorPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" style="-fx-background-color: #bea1d3;" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pratham.controller.DashboardController">
+   <children>
+      <Label layoutX="284.0" layoutY="53.0" text="Dashboard" textFill="#ffdffc">
+         <font>
+            <Font name="SF Pro Display Regular" size="50.0" />
+         </font>
+      </Label>
+      <ImageView fitHeight="371.0" fitWidth="529.0" layoutX="271.0" layoutY="145.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../images/dashboard-image.jpg" />
+         </image>
+      </ImageView>
+      <AnchorPane layoutY="145.0" prefHeight="353.0" prefWidth="270.0" style="-fx-background-color: #a277c4;" AnchorPane.bottomAnchor="102.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="530.0" AnchorPane.topAnchor="145.0">
+         <children>
+            <VBox layoutX="21.0" layoutY="107.0">
+               <children>
+                  <Button fx:id="roomButton" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#gotoRoom" prefHeight="35.0" prefWidth="228.0" style="-fx-background-color: #a277c4;" text="➡ Manage Rooms" textAlignment="CENTER" textFill="#ffdffc">
+                     <font>
+                        <Font name="CaskaydiaCove NFP Bold" size="15.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="bookingButton" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#gotoBooking" prefHeight="35.0" prefWidth="228.0" style="-fx-background-color: #a277c4;" text="➡ Manage Bookings" textAlignment="CENTER" textFill="#ffdffc">
+                     <font>
+                        <Font name="CaskaydiaCove NFP Bold" size="15.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="customerButton" alignment="TOP_LEFT" mnemonicParsing="false" onAction="#gotoCustomer" prefHeight="35.0" prefWidth="228.0" style="-fx-background-color: #a277c4;" text="➡ Manage Customers" textAlignment="CENTER" textFill="#ffdffc">
+                     <font>
+                        <Font name="CaskaydiaCove NFP Bold" size="15.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Button fx:id="billButton" alignment="TOP_LEFT" layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onAction="#gotoBill" prefHeight="35.0" prefWidth="228.0" style="-fx-background-color: #a277c4;" text="➡ View Bills" textAlignment="CENTER" textFill="#ffdffc">
+                     <font>
+                        <Font name="CaskaydiaCove NFP Bold" size="15.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
