@@ -3,6 +3,7 @@ package com.pratham.controller;
 import com.pratham.dao.RoomDAO;
 import com.pratham.model.Room;
 import com.pratham.model.RoomType;
+import com.pratham.util.AlertUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -73,6 +74,10 @@ public class RoomController implements Initializable{
 
         ObservableList<Room> list = FXCollections.observableArrayList(rooms);
         roomTable.setItems(list);
+
+        //sort in ascending order of room number.
+        colRNo.setSortType(TableColumn.SortType.ASCENDING);
+        roomTable.getSortOrder().add(colRNo);
     }
 
     @FXML
@@ -81,6 +86,38 @@ public class RoomController implements Initializable{
 
         ObservableList<Room> list = FXCollections.observableArrayList(rooms);
         roomTable.setItems(list);
+
+        //sort in ascending order of room number.
+        colRNo.setSortType(TableColumn.SortType.ASCENDING);
+        roomTable.getSortOrder().add(colRNo);
+    }
+
+    @FXML
+    void addRoomAndUpdate(ActionEvent event){
+
+        if(textAddRNo.getText().isEmpty() || (comboBoxRType.getValue() == null) || textPrice.getText().isEmpty()){
+            AlertUtil.showWarning("Field(s) cannot be empty.");
+            return;
+        }
+
+        try{
+            int roomNo = Integer.parseInt(textAddRNo.getText());
+            RoomType roomType = comboBoxRType.getValue();
+            double roomPrice = Double.parseDouble(textPrice.getText());
+
+            RoomDAO.addRoom(new Room(roomNo, roomType, roomPrice));
+
+            showAllRooms(event);
+
+        }catch(NumberFormatException e){
+            AlertUtil.showError("Invalid Input.");
+        }
+
+    }
+
+    @FXML
+    void removeRoomAndUpdate(){
+
     }
 
     @Override
@@ -95,5 +132,6 @@ public class RoomController implements Initializable{
         colRType.setCellValueFactory(new PropertyValueFactory<>("type"));
         colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
         colAvail.setCellValueFactory(new PropertyValueFactory<>("available"));
+
     }
 }

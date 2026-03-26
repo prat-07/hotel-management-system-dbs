@@ -3,10 +3,12 @@ package com.pratham.dao;
 import com.pratham.db.DBUtil;
 import com.pratham.model.Room;
 import com.pratham.model.RoomType;
+import com.pratham.util.AlertUtil;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,4 +75,46 @@ public class RoomDAO {
         return rooms;
     }
 
+    public static void addRoom(Room room){
+
+        String insertSql = " INSERT INTO room VALUES(?, ?, ?); ";
+        String checkSql = "SELECT * FROM room WHERE room_no = ?";
+
+        try( Connection connection = DBUtil.getConnection(); ){
+            //check if room already present
+            try(PreparedStatement ps = connection.prepareStatement(checkSql);){
+                ps.setInt(1, room.getRoomNo());
+                ResultSet rs = ps.executeQuery();
+
+                //if there is an entry
+                if(rs.next()){
+                    AlertUtil.showError("Room already present.");
+                    return;
+                }
+            }catch (SQLException e){
+                System.out.println(e.getMessage());
+            }
+
+            //add room
+            try(PreparedStatement ps = connection.prepareStatement(insertSql);){
+                ps.setInt(1, room.getRoomNo());
+                ps.setString(2, room.getType().name());
+                ps.setDouble(3, room.getPrice());
+
+                ps.executeUpdate();
+
+                AlertUtil.showSuccess("Room added.");
+
+            }catch(SQLException e){
+                System.out.println(e.getMessage());
+            }
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public static void remRoom(){
+
+    }
 }

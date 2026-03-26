@@ -90,7 +90,7 @@
                         </TextField>
                      </children>
                   </VBox>
-                  <Button fx:id="addBtn" layoutX="185.0" layoutY="248.0" mnemonicParsing="false" style="-fx-background-color: #62109F;" text="Add" textFill="WHITE">
+                  <Button fx:id="addBtn" layoutX="185.0" layoutY="248.0" mnemonicParsing="false" onAction="#addRoomAndUpdate" style="-fx-background-color: #62109F;" text="Add" textFill="WHITE">
                      <font>
                         <Font name="CaskaydiaCove NF Regular" size="13.0" />
                      </font>
@@ -98,7 +98,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="remBtn" layoutX="533.0" layoutY="184.0" mnemonicParsing="false" style="-fx-background-color: #DC0E0E;" text="Remove" textFill="WHITE">
+                  <Button fx:id="remBtn" layoutX="533.0" layoutY="184.0" mnemonicParsing="false" onAction="#removeRoomAndUpdate" style="-fx-background-color: #DC0E0E;" text="Remove" textFill="WHITE">
                      <font>
                         <Font name="CaskaydiaCove NF Regular" size="13.0" />
                      </font>
@@ -126,7 +126,7 @@
                         <Font name="CaskaydiaCove NF Regular" size="13.0" />
                      </font>
                   </Label>
-                  <TextField fx:id="textRemRNo" alignment="BOTTOM_LEFT" layoutX="533.0" layoutY="148.0" prefWidth="150.0">
+                  <TextField fx:id="textRemRNo" alignment="BOTTOM_LEFT" layoutX="533.0" layoutY="148.0" onAction="#removeRoomAndUpdate" prefWidth="150.0">
                      <padding>
                         <Insets bottom="10.0" />
                      </padding>
