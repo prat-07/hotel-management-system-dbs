@@ -116,7 +116,23 @@ public class RoomController implements Initializable{
     }
 
     @FXML
-    void removeRoomAndUpdate(){
+    void removeRoomAndUpdate(ActionEvent event){
+
+        if(textRemRNo.getText().isEmpty()){
+            AlertUtil.showWarning("Field cannot be empty.");
+            return;
+        }
+
+        try{
+            int roomNo = Integer.parseInt(textRemRNo.getText());
+
+            RoomDAO.remRoom(roomNo);
+
+            showAllRooms(event);
+
+        }catch(NumberFormatException e){
+            AlertUtil.showError("Invalid Input.");
+        }
 
     }
 

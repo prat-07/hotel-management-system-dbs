@@ -81,6 +81,7 @@ public class RoomDAO {
         String checkSql = "SELECT * FROM room WHERE room_no = ?";
 
         try( Connection connection = DBUtil.getConnection(); ){
+
             //check if room already present
             try(PreparedStatement ps = connection.prepareStatement(checkSql);){
                 ps.setInt(1, room.getRoomNo());
@@ -114,7 +115,39 @@ public class RoomDAO {
         }
     }
 
-    public static void remRoom(){
+    public static void remRoom(int roomNo){
+        String checkSql = "SELECT * FROM booking WHERE room_no = ?";
+        String dltSql   = "DELETE FROM room WHERE room_no = ?";
+
+        try(Connection connection = DBUtil.getConnection();){
+
+            //check if room booked
+            try( PreparedStatement ps = connection.prepareStatement(checkSql); ){
+                ps.setInt(1, roomNo);
+                ResultSet rs = ps.executeQuery();
+
+                if(rs.next()){
+                    AlertUtil.showWarning("Room is booked. Can't remove.");
+                    return;
+                }
+            }catch (SQLException e){
+                System.out.println(e.getMessage());
+            }
+
+            //remove room
+            try(PreparedStatement ps = connection.prepareStatement(dltSql);){
+
+                ps.setInt(1, roomNo);
+                ps.executeUpdate();
+
+                AlertUtil.showSuccess("Room Deleted.");
+            }catch (SQLException e){
+                System.out.println(e.getMessage());
+            }
+        }
+        catch (Exception e) {
+            System.out.println(e.getMessage());
+        }
 
     }
 }
