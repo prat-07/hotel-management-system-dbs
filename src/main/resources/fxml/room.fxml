@@ -17,7 +17,7 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pratham.controller.RoomController">
    <center>
-      <TableView prefHeight="247.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="roomTable" prefHeight="247.0" prefWidth="800.0" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn fx:id="colRNo" prefWidth="75.0" text="Room No" />
           <TableColumn fx:id="colRType" prefWidth="198.5" text="Room Type" />
@@ -143,7 +143,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="showAvailBtn" layoutX="434.0" layoutY="287.0" mnemonicParsing="false" style="-fx-background-color: #2F6B3F;" text="Show Available" textFill="WHITE">
+                  <Button fx:id="showAvailBtn" layoutX="434.0" layoutY="287.0" mnemonicParsing="false" onAction="#showAvailRooms" style="-fx-background-color: #2F6B3F;" text="Show Available" textFill="WHITE">
                      <font>
                         <Font name="CaskaydiaCove NF Regular" size="13.0" />
                      </font>
@@ -151,7 +151,7 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="showAllBtn" layoutX="260.0" layoutY="287.0" mnemonicParsing="false" prefHeight="24.0" prefWidth="110.0" style="-fx-background-color: #2F6B3F;" text="Show All" textFill="WHITE">
+                  <Button fx:id="showAllBtn" layoutX="260.0" layoutY="287.0" mnemonicParsing="false" onAction="#showAllRooms" prefHeight="24.0" prefWidth="110.0" style="-fx-background-color: #2F6B3F;" text="Show All" textFill="WHITE">
                      <font>
                         <Font name="CaskaydiaCove NF Regular" size="13.0" />
                      </font>

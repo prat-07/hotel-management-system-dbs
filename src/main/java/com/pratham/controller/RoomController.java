@@ -1,6 +1,10 @@
 package com.pratham.controller;
 
+import com.pratham.dao.RoomDAO;
+import com.pratham.model.Room;
 import com.pratham.model.RoomType;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,58 +12,50 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import jdk.internal.org.jline.utils.OSUtils;
 
 import java.io.IOException;
 import java.net.URL;
-import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
 public class RoomController implements Initializable{
-    @FXML
-    private Button addBtn;
 
     @FXML
     private Button backBtn;
 
     @FXML
-    private TableColumn<?, ?> colAvail;
-
+    private TableView<Room> roomTable;
     @FXML
-    private TableColumn<?, ?> colPrice;
-
+    private TableColumn<Room, Integer> colRNo;
     @FXML
-    private TableColumn<?, ?> colRNo;
-
+    private TableColumn<Room, RoomType> colRType;
     @FXML
-    private TableColumn<?, ?> colRType;
-
+    private TableColumn<Room, Double> colPrice;
     @FXML
-    private ComboBox<RoomType> comboBoxRType;
-
-    @FXML
-    private Button remBtn;
-
-    @FXML
-    private Button showAllBtn;
-
-    @FXML
-    private Button showAvailBtn;
+    private TableColumn<Room, Boolean> colAvail;
 
     @FXML
     private TextField textAddRNo;
-
+    @FXML
+    private ComboBox<RoomType> comboBoxRType;
     @FXML
     private TextField textPrice;
+    @FXML
+    private Button addBtn;
 
     @FXML
     private TextField textRemRNo;
+    @FXML
+    private Button remBtn;
+    @FXML
+
+    private Button showAllBtn;
+    @FXML
+    private Button showAvailBtn;
 
     @FXML
     void gotoDashboard(ActionEvent event) throws IOException {
@@ -71,9 +67,33 @@ public class RoomController implements Initializable{
         stage.centerOnScreen();
     }
 
+    @FXML
+    void showAllRooms(ActionEvent event) {
+        List<Room> rooms = RoomDAO.getAllRooms();
+
+        ObservableList<Room> list = FXCollections.observableArrayList(rooms);
+        roomTable.setItems(list);
+    }
+
+    @FXML
+    void showAvailRooms(ActionEvent event) {
+        List<Room> rooms = RoomDAO.getAvailRooms();
+
+        ObservableList<Room> list = FXCollections.observableArrayList(rooms);
+        roomTable.setItems(list);
+    }
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+
+        //Initializing combo box
         RoomType[] roomTypes = RoomType.values();
         comboBoxRType.getItems().addAll(roomTypes);
+
+        //Initializing table view
+        colRNo.setCellValueFactory(new PropertyValueFactory<>("roomNo"));
+        colRType.setCellValueFactory(new PropertyValueFactory<>("type"));
+        colPrice.setCellValueFactory(new PropertyValueFactory<>("price"));
+        colAvail.setCellValueFactory(new PropertyValueFactory<>("available"));
     }
 }
