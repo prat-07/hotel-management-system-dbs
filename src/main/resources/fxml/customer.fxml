@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -16,16 +17,17 @@
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pratham.controller.CustomerController">
    <center>
-      <TableView prefHeight="331.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="customerTable" prefHeight="331.0" prefWidth="800.0" BorderPane.alignment="CENTER">
         <columns>
-          <TableColumn fx:id="colCID" prefWidth="95.5" text="Customer ID" />
-          <TableColumn fx:id="colFName" prefWidth="84.0" text="First Name" />
+          <TableColumn fx:id="colCID" prefWidth="97.5" text="Customer ID" />
+          <TableColumn fx:id="colFName" prefWidth="82.0" text="First Name" />
             <TableColumn fx:id="colLName" prefWidth="75.0" text="Last Name" />
             <TableColumn fx:id="colPNo" prefWidth="75.0" text="Phone No." />
             <TableColumn fx:id="colStreetNo" prefWidth="75.0" text="Street No." />
             <TableColumn fx:id="colCity" prefWidth="62.0" text="City" />
             <TableColumn fx:id="colState" prefWidth="50.5" text="State" />
             <TableColumn fx:id="colPincode" prefWidth="112.5" text="Pincode" />
+            <TableColumn fx:id="colStaying" prefWidth="75.0" text="Staying" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -104,7 +106,7 @@
                         </TextField>
                      </children>
                   </GridPane>
-                  <AnchorPane layoutX="279.0">
+                  <AnchorPane layoutX="279.0" layoutY="-10.0">
                      <children>
                         <GridPane>
                            <columnConstraints>
@@ -123,6 +125,9 @@
                                  <font>
                                     <Font name="CaskaydiaCove NF Bold" size="13.0" />
                                  </font>
+                                 <GridPane.margin>
+                                    <Insets bottom="10.0" />
+                                 </GridPane.margin>
                               </Label>
                               <Label text="Street No:" GridPane.rowIndex="1">
                                  <font>
@@ -171,7 +176,7 @@
                </children>
             </AnchorPane>
             <Separator layoutX="88.0" layoutY="311.0" prefHeight="8.0" prefWidth="625.0" />
-            <Button fx:id="btnAddCustomer" layoutX="129.0" layoutY="275.0" mnemonicParsing="false" text="Add Customer">
+            <Button fx:id="btnAddCustomer" layoutX="129.0" layoutY="261.0" mnemonicParsing="false" onAction="#addCustomerAndUpdate" text="Add Customer">
                <font>
                   <Font name="CaskaydiaCove NF Regular" size="12.0" />
                </font>
@@ -186,7 +191,17 @@
                   <Font name="CaskaydiaCove NF Regular" size="13.0" />
                </font>
             </TextField>
-            <Button fx:id="btnRemCustomer" layoutX="129.0" layoutY="374.0" mnemonicParsing="false" text="Remove Customer">
+            <Button fx:id="btnRemCustomer" layoutX="129.0" layoutY="383.0" mnemonicParsing="false" onAction="#removeCustomerAndUpdate" text="Remove Customer">
+               <font>
+                  <Font name="CaskaydiaCove NF Regular" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnShowAll" layoutX="604.0" layoutY="381.0" mnemonicParsing="false" onAction="#showAllCustomers" text="Show All">
+               <font>
+                  <Font name="CaskaydiaCove NF Regular" size="12.0" />
+               </font>
+            </Button>
+            <Button fx:id="btnShowStaying" layoutX="480.0" layoutY="381.0" mnemonicParsing="false" onAction="#showStayingCustomers" text="Show Staying">
                <font>
                   <Font name="CaskaydiaCove NF Regular" size="12.0" />
                </font>
