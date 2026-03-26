@@ -1,5 +1,6 @@
 package com.pratham.controller;
 
+import com.pratham.util.AlertUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -24,8 +25,7 @@ public class LoginController {
     private PasswordField pwdPasswordField;
     @FXML
     private Button loginButton;
-    @FXML
-    private Label errorLabel;
+
 
     public void gotoDashboard(ActionEvent event) throws IOException {
 
@@ -42,7 +42,7 @@ public class LoginController {
             stage.centerOnScreen();
         }
         else{
-            errorLabel.setText("ERROR! Username and/or Password field(s) cannot be empty.");
+            AlertUtil.showWarning("Field(s) cannot be empty.");
         }
 
     }

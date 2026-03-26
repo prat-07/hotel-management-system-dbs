@@ -57,11 +57,6 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Label fx:id="errorLabel" alignment="CENTER" layoutX="-1.0" layoutY="355.0" prefHeight="18.0" prefWidth="373.0" textFill="#d70000">
-               <font>
-                  <Font name="SF Pro Display Bold" size="11.0" />
-               </font>
-            </Label>
          </children>
       </AnchorPane>
    </right>

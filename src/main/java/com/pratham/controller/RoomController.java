@@ -101,9 +101,9 @@ public class RoomController implements Initializable{
         }
 
         try{
-            int roomNo = Integer.parseInt(textAddRNo.getText());
+            int roomNo = Integer.parseInt(textAddRNo.getText().trim());
             RoomType roomType = comboBoxRType.getValue();
-            double roomPrice = Double.parseDouble(textPrice.getText());
+            double roomPrice = Double.parseDouble(textPrice.getText().trim());
 
             RoomDAO.addRoom(new Room(roomNo, roomType, roomPrice));
 
@@ -124,7 +124,7 @@ public class RoomController implements Initializable{
         }
 
         try{
-            int roomNo = Integer.parseInt(textRemRNo.getText());
+            int roomNo = Integer.parseInt(textRemRNo.getText().trim());
 
             RoomDAO.remRoom(roomNo);
 
