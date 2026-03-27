@@ -1,6 +1,7 @@
 package com.pratham.util;
 
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 
 public class AlertUtil {
 
@@ -26,5 +27,14 @@ public class AlertUtil {
         alert.setHeaderText("Warning");
         alert.setContentText(message);
         alert.showAndWait();
+    }
+
+    public static ButtonType takeConfirmation(String message){
+        Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+        alert.setTitle("Alert");
+        alert.setHeaderText("Confirmation");
+        alert.setContentText(message);
+
+        return alert.showAndWait().get();
     }
 }

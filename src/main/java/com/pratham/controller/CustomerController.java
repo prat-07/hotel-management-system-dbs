@@ -3,6 +3,7 @@ package com.pratham.controller;
 import com.pratham.dao.CustomerDAO;
 import com.pratham.model.Customer;
 import com.pratham.model.Room;
+import com.pratham.util.AlertUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -83,6 +84,29 @@ public class CustomerController implements Initializable {
 
     @FXML
     void addCustomerAndUpdate(ActionEvent event) {
+        if(textCIdAdd.getText().trim().isEmpty() || textFName.getText().trim().isEmpty() || textLName.getText().trim().isEmpty() ||
+                textPNo.getText().trim().isEmpty() || textStreet.getText().trim().isEmpty() || textCity.getText().trim().isEmpty() ||
+                textState.getText().trim().isEmpty() || textPincode.getText().trim().isEmpty()){
+            AlertUtil.showWarning("Field(s) cannot be empty");
+            return;
+        }
+        try{
+            long cid = Long.parseLong(textCIdAdd.getText().trim());
+            String fName = textFName.getText().trim();
+            String lName = textLName.getText().trim();
+            long phoneNo = Long.parseLong(textPNo.getText().trim());
+            String streetNo = textStreet.getText().trim();
+            String city = textCity.getText().trim();
+            String state = textState.getText().trim();
+            int pincode = Integer.parseInt(textPincode.getText().trim());
+
+            CustomerDAO.addCustomer(new Customer(cid, fName, lName, phoneNo, streetNo, city, state, pincode));
+
+            showAllCustomers(event);
+
+        }catch (NumberFormatException e){
+            AlertUtil.showError("Invalid input.");
+        }
 
     }
 
@@ -98,9 +122,9 @@ public class CustomerController implements Initializable {
         ObservableList<Customer> list = FXCollections.observableArrayList(customers);
         customerTable.setItems(list);
 
-        //sort in ascending order of room number.
-        colCID.setSortType(TableColumn.SortType.ASCENDING);
-        customerTable.getSortOrder().add(colCID);
+        //sort whether staying or not.
+        colStaying.setSortType(TableColumn.SortType.DESCENDING);
+        customerTable.getSortOrder().add(colStaying);
 
     }
 
@@ -112,7 +136,7 @@ public class CustomerController implements Initializable {
         customerTable.setItems(list);
 
         //sort in ascending order of room number.
-        colCID.setSortType(TableColumn.SortType.ASCENDING);
+        colStaying.setSortType(TableColumn.SortType.DESCENDING);
         customerTable.getSortOrder().add(colCID);
 
     }
