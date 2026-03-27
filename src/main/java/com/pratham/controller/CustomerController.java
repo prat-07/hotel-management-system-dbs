@@ -113,6 +113,16 @@ public class CustomerController implements Initializable {
     @FXML
     void removeCustomerAndUpdate(ActionEvent event) {
 
+        if(textCIdRem.getText().trim().isEmpty()){
+            AlertUtil.showWarning("Field(s) cannot be empty.");
+            return;
+        }
+
+        long cid = Long.parseLong(textCIdRem.getText().trim());
+        CustomerDAO.remCustomer(cid);
+
+        showAllCustomers(event);
+
     }
 
     @FXML
