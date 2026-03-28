@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.Cursor?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
@@ -13,17 +14,18 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pratham.controller.BookingController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="900.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pratham.controller.BookingController">
    <bottom>
-      <TableView prefHeight="304.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="bookingTable" prefHeight="349.0" prefWidth="900.0" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn fx:id="colBId" prefWidth="75.0" text="B_ID" />
           <TableColumn fx:id="colCId" prefWidth="75.0" text="C_ID" />
             <TableColumn fx:id="colCContact" prefWidth="128.5" text="Customer Contact" />
-            <TableColumn fx:id="colRoonNo" prefWidth="75.0" text="Room No." />
+            <TableColumn fx:id="colRoomNo" prefWidth="75.0" text="Room No." />
             <TableColumn fx:id="colCheckin" prefWidth="75.0" text="Check IN" />
             <TableColumn fx:id="colCheckout" prefWidth="81.5" text="Check OUT" />
             <TableColumn fx:id="colTotDays" prefWidth="75.0" text="Total Days" />
+            <TableColumn fx:id="colBookingStatus" prefWidth="75.0" text="Status" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -31,9 +33,9 @@
       </TableView>
    </bottom>
    <top>
-      <AnchorPane prefHeight="296.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="364.0" prefWidth="900.0" BorderPane.alignment="CENTER">
          <children>
-            <VBox layoutX="92.0" layoutY="147.0">
+            <VBox layoutX="14.0" layoutY="177.0">
                <children>
                   <Label text="Customer ID:">
                      <font>
@@ -69,64 +71,56 @@
                   </Label>
                </children>
             </VBox>
-            <VBox layoutX="196.0" layoutY="143.0">
+            <VBox layoutX="118.0" layoutY="173.0">
                <children>
-                  <TextField fx:id="textCID" prefWidth="150.0">
+                  <TextField fx:id="textCID" prefWidth="120.0" promptText="Aadhaar No">
                      <font>
                         <Font name="CaskaydiaCove NF Regular" size="13.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="textRoomNo" prefWidth="150.0">
+                  <TextField fx:id="textRoomNo" prefWidth="120.0">
                      <font>
                         <Font name="CaskaydiaCove NF Regular" size="13.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="textCheckIN" prefWidth="150.0">
-                     <font>
-                        <Font name="CaskaydiaCove NF Regular" size="13.0" />
-                     </font>
-                  </TextField>
-                  <TextField fx:id="textCheckOUT" prefWidth="150.0">
-                     <font>
-                        <Font name="CaskaydiaCove NF Regular" size="13.0" />
-                     </font>
-                  </TextField>
+                  <DatePicker fx:id="dateCheckin" prefHeight="27.0" prefWidth="120.0" />
+                  <DatePicker fx:id="dateCheckout" layoutX="10.0" layoutY="58.0" prefHeight="27.0" prefWidth="120.0" />
                </children>
             </VBox>
-            <Label layoutX="240.0" layoutY="25.0" text="Manage Bookings">
+            <Label layoutX="287.0" layoutY="26.0" text="Manage Bookings">
                <font>
                   <Font name="SF Pro Display Bold" size="40.0" />
                </font>
             </Label>
-            <Label layoutX="469.0" layoutY="150.0" text="Booking ID:">
+            <Label layoutX="602.0" layoutY="175.0" text="Booking ID:">
                <font>
                   <Font name="CaskaydiaCove NF Regular" size="13.0" />
                </font>
             </Label>
-            <TextField fx:id="textBID" layoutX="562.0" layoutY="145.0" prefWidth="150.0">
+            <TextField fx:id="textCheckinCheckout" layoutX="697.0" layoutY="171.0" prefWidth="160.0">
                <font>
                   <Font name="CaskaydiaCove NF Regular" size="13.0" />
                </font>
             </TextField>
-            <Label layoutX="233.0" layoutY="107.0" text="Add Booking">
+            <Label layoutX="140.0" layoutY="137.0" text="Add Booking">
                <font>
                   <Font name="SF Pro Display Bold" size="13.0" />
                </font>
             </Label>
-            <Label layoutX="587.0" layoutY="107.0" text="Remove Booking">
+            <Label layoutX="719.0" layoutY="137.0" text="Checkin / Checkout">
                <font>
                   <Font name="SF Pro Display Bold" size="13.0" />
                </font>
             </Label>
-            <Separator layoutX="397.0" layoutY="86.0" orientation="VERTICAL" prefHeight="200.0" />
-            <Button fx:id="addButton" layoutX="196.0" layoutY="255.0" mnemonicParsing="false" text="Add">
+            <Separator layoutX="578.0" layoutY="110.0" orientation="VERTICAL" prefHeight="207.0" prefWidth="0.0" />
+            <Button fx:id="addButton" layoutX="118.0" layoutY="285.0" mnemonicParsing="false" onAction="#addBookingAndUpdate" text="Add">
                <font>
                   <Font name="CaskaydiaCove NF Regular" size="13.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
-            <Button fx:id="removeButton" layoutX="562.0" layoutY="189.0" mnemonicParsing="false" text="Remove">
+            <Button fx:id="checkoutButton" layoutX="779.0" layoutY="207.0" mnemonicParsing="false" onAction="#checkoutAndUpdate" text="Checkout">
                <font>
                   <Font name="CaskaydiaCove NF Regular" size="13.0" />
                </font>
@@ -136,6 +130,37 @@
             <Button fx:id="backButton" layoutX="14.0" layoutY="36.0" mnemonicParsing="false" onAction="#gotoDashboard" opacity="0.75" prefHeight="27.0" prefWidth="96.0" text="⬅ Dashboard">
                <font>
                   <Font name="SF Pro Display Medium" size="13.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Label layoutX="413.0" layoutY="137.0" text="Remove Booking">
+               <font>
+                  <Font name="SF Pro Display Bold" size="13.0" />
+               </font>
+            </Label>
+            <Label layoutX="290.0" layoutY="176.0" text="Booking ID:">
+               <font>
+                  <Font name="CaskaydiaCove NF Regular" size="13.0" />
+               </font>
+            </Label>
+            <TextField fx:id="textRemoveBooking" layoutX="383.0" layoutY="171.0" prefWidth="160.0">
+               <font>
+                  <Font name="CaskaydiaCove NF Regular" size="13.0" />
+               </font>
+            </TextField>
+            <Button fx:id="removeBookingButton" layoutX="383.0" layoutY="208.0" mnemonicParsing="false" onAction="#removeBookingAndUpdate" text="Remove">
+               <font>
+                  <Font name="CaskaydiaCove NF Regular" size="13.0" />
+               </font>
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+            <Button fx:id="checkinButton" layoutX="697.0" layoutY="207.0" mnemonicParsing="false" onAction="#checkinAndUpdate" text="Checkin">
+               <font>
+                  <Font name="CaskaydiaCove NF Regular" size="13.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
