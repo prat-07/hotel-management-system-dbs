@@ -137,11 +137,40 @@ public class BookingController implements Initializable {
 
     @FXML
     void checkinAndUpdate(ActionEvent event) {
+        if(textCheckinCheckout.getText().trim().isEmpty()){
+            AlertUtil.showWarning("Field cannot be empty.");
+            return;
+        }
 
+        try{
+
+            int bid = Integer.parseInt(textCheckinCheckout.getText().trim());
+            BookingDAO.changeStatusToCheckedIn(bid);
+
+            showBookings();
+
+        }catch (NumberFormatException e){
+            AlertUtil.showError("Invalid input.");
+        }
     }
 
     @FXML
     void checkoutAndUpdate(ActionEvent event) {
+        if(textCheckinCheckout.getText().trim().isEmpty()){
+            AlertUtil.showWarning("Field cannot be empty.");
+            return;
+        }
+
+        try{
+
+            int bid = Integer.parseInt(textCheckinCheckout.getText().trim());
+            BookingDAO.changeStatusToCheckedOut(bid);
+
+            showBookings();
+
+        }catch (NumberFormatException e){
+            AlertUtil.showError("Invalid input.");
+        }
 
     }
 

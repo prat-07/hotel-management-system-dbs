@@ -34,7 +34,6 @@ public class BookingDAO {
         catch (Exception e){ System.out.println(e.getMessage());}
     }
 
-
     public static void remBooking(int bookingId){
         String fetchSql = "SELECT * FROM booking WHERE bid = ?";
         String sql = "DELETE FROM booking WHERE bid = ?";
@@ -54,7 +53,13 @@ public class BookingDAO {
 
                 //Check if booking status is something other that BOOKED. Disallow removal.
                 if(!rs.getString("status").equals("BOOKED")){
-                    AlertUtil.showWarning("Cannot remove booking. Customer has already checked in.");
+
+                    if(rs.getString("status").equals("CHECKED_OUT")){
+                        AlertUtil.showWarning("Cannot remove booking. Customer has already checked out.");
+                    }
+                    else{
+                        AlertUtil.showWarning("Cannot remove booking. Customer has already checked in.");
+                    }
                     return;
                 }
 
@@ -78,11 +83,101 @@ public class BookingDAO {
         catch (Exception e){ System.out.println(e.getMessage()); }
     }
 
-    public static void checkin(int bookingId){
+    public static void changeStatusToCheckedIn(int bookingId){
+        String fetchSql = "select * from booking where bid = ?";
+        String updateSql = "update booking set status = ? where bid = ?";
+
+        try(Connection connection = DBUtil.getConnection()){
+
+            //handle corner cases
+            try(PreparedStatement ps = connection.prepareStatement(fetchSql)){
+
+                ps.setInt(1, bookingId);
+                ResultSet rs = ps.executeQuery();
+
+                //no entry for bookingId
+                if(!rs.next()){
+                    AlertUtil.showWarning("No entry found.");
+                    return;
+                }
+
+                String status = rs.getString("status");
+
+                if(status.equals("CHECKED_IN")){
+                    AlertUtil.showWarning("Already checked in.");
+                    return;
+                }else if(status.equals("CHECKED_OUT")){
+                    AlertUtil.showWarning("Customer has already checked out.");
+                    return;
+                }
+
+            }catch (SQLException e){ System.out.println(e.getMessage()); }
+
+            //update booking
+            try(PreparedStatement ps = connection.prepareStatement(updateSql)){
+
+                ps.setString(1, "CHECKED_IN");
+                ps.setInt(2, bookingId);
+
+                if(AlertUtil.takeConfirmation("Do you want to checkin?") == ButtonType.OK){
+                    ps.executeUpdate();
+                    AlertUtil.showSuccess("Checked in successfully.");
+                }
+
+            }catch (SQLException e){ System.out.println(e.getMessage()); }
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
 
     }
 
-    public static void checkout(int bookingId){
+    public static void changeStatusToCheckedOut(int bookingId){
+        String fetchSql = "select * from booking where bid = ?";
+        String updateSql = "update booking set status = ? where bid = ?";
+
+        try(Connection connection = DBUtil.getConnection()){
+
+            //handle corner cases
+            try(PreparedStatement ps = connection.prepareStatement(fetchSql)){
+
+                ps.setInt(1, bookingId);
+                ResultSet rs = ps.executeQuery();
+
+                //no entry for bookingId
+                if(!rs.next()){
+                    AlertUtil.showWarning("No entry found.");
+                    return;
+                }
+
+                String status = rs.getString("status");
+
+                if(status.equals("BOOKED")){
+                    AlertUtil.showWarning("Customer has not checked in yet.");
+                    return;
+                }else if(status.equals("CHECKED_OUT")){
+                    AlertUtil.showWarning("Customer has already checked out.");
+                    return;
+                }
+
+            }catch (SQLException e){ System.out.println(e.getMessage()); }
+
+            //update booking
+            try(PreparedStatement ps = connection.prepareStatement(updateSql)){
+
+                ps.setString(1, "CHECKED_OUT");
+                ps.setInt(2, bookingId);
+
+                if(AlertUtil.takeConfirmation("Do you want to checkout?") == ButtonType.OK){
+                    ps.executeUpdate();
+                    AlertUtil.showSuccess("Checked out successfully.");
+                }
+
+            }catch (SQLException e){ System.out.println(e.getMessage()); }
+
+        }catch (Exception e){
+            System.out.println(e.getMessage());
+        }
 
     }
 
