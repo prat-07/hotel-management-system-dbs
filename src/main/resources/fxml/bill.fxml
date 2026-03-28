@@ -5,13 +5,15 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pratham.controller.BillController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/25" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.pratham.controller.BillController">
    <center>
-      <TableView prefHeight="385.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+      <TableView fx:id="billTable" prefHeight="218.0" prefWidth="800.0" BorderPane.alignment="CENTER">
         <columns>
           <TableColumn fx:id="colBID" prefWidth="91.0" text="Booking ID" />
           <TableColumn fx:id="colCID" prefWidth="98.0" text="Customer ID" />
@@ -21,7 +23,6 @@
             <TableColumn fx:id="colCheckOut" prefWidth="75.0" text="Check Out" />
             <TableColumn fx:id="colDaysStayed" prefWidth="90.0" text="Days Stayed" />
             <TableColumn fx:id="colTotPrice" prefWidth="75.0" text="Total Price" />
-            <TableColumn fx:id="colPayStat" prefWidth="116.5" text="Payment Status" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -29,21 +30,31 @@
       </TableView>
    </center>
    <top>
-      <AnchorPane prefHeight="102.0" prefWidth="800.0" BorderPane.alignment="CENTER">
+      <AnchorPane prefHeight="370.0" prefWidth="800.0" style="-fx-background-color: #548DB0;" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="285.0" layoutY="24.0" text="Billling Details">
+            <Label layoutX="105.0" layoutY="126.0" text="Billling">
                <font>
-                  <Font name="SF Pro Display Regular" size="40.0" />
+                  <Font name="CaskaydiaCove NF Regular" size="50.0" />
                </font>
             </Label>
-            <Button fx:id="backButton" layoutX="14.0" layoutY="35.0" mnemonicParsing="false" onAction="#gotoDashboard" opacity="0.7" text="⬅ Dashboard">
+            <Button fx:id="backButton" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#gotoDashboard" opacity="0.7" style="-fx-background-radius: 5; -fx-background-color: #AACDDC;" text="⬅ Dashboard" textFill="#373430">
                <font>
-                  <Font name="SF Pro Display Regular" size="13.0" />
+                  <Font name="SF Pro Display Bold" size="13.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
+            <ImageView fitHeight="299.0" fitWidth="267.0" layoutX="533.0" layoutY="56.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@../images/receipt-illustration.png" />
+               </image>
+            </ImageView>
+            <Label layoutX="222.0" layoutY="185.0" text="Details">
+               <font>
+                  <Font name="CaskaydiaCove NF Regular" size="50.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </top>
