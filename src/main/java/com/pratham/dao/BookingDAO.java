@@ -29,7 +29,31 @@ public class BookingDAO {
 
                 ps.executeUpdate();
 
-            }catch (SQLException e){ AlertUtil.showWarning(e.getMessage()); }
+            }catch (SQLException e){
+                String code = e.getSQLState();
+
+                if("23505".equals(code)){
+                    AlertUtil.showWarning("Room is already booked or duplicate booking exists.");
+                }
+                else if("23503".equals(code)){
+                    AlertUtil.showWarning("Invalid customer ID or room number.");
+                }
+                else if("23514".equals(code)){
+                    AlertUtil.showWarning("Invalid booking dates. Checkout must be after check-in.");
+                }
+                else if("23502".equals(code)){
+                    AlertUtil.showWarning("All fields are required.");
+                }
+                else if("22P02".equals(code)){
+                    AlertUtil.showWarning("Invalid data format.");
+                }
+                else if("22003".equals(code)){
+                    AlertUtil.showWarning("Numeric value out of range.");
+                }
+                else{
+                    AlertUtil.showWarning("Database error: " + e.getMessage());
+                }
+            }
         }
         catch (Exception e){ System.out.println(e.getMessage());}
     }
