@@ -3,16 +3,34 @@ package com.pratham.dao;
 import com.pratham.db.DBUtil;
 import com.pratham.model.Booking;
 import com.pratham.model.BookingStatus;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import com.pratham.util.AlertUtil;
+
+import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
 public class BookingDAO {
 
-    public static void addBooking(Booking booking){
+    public static void addBooking(long cid, int roomNo, LocalDate checkin, LocalDate checkout){
+        String sql = """
+                INSERT INTO booking(cid, room_no, check_in, check_out) VALUES(?, ?, ?, ?)
+                """;
 
+        try( Connection connection = DBUtil.getConnection(); ){
+
+            try(PreparedStatement ps = connection.prepareStatement(sql);){
+
+                ps.setLong(1, cid);
+                ps.setInt(2, roomNo);
+                ps.setDate(3, Date.valueOf(checkin));
+                ps.setDate(4, Date.valueOf(checkout));
+
+                ps.executeUpdate();
+
+            }catch (SQLException e){ AlertUtil.showWarning(e.getMessage()); }
+        }
+        catch (Exception e){ System.out.println(e.getMessage());}
     }
 
 

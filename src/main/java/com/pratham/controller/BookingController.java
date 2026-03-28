@@ -4,6 +4,7 @@ import com.pratham.dao.BookingDAO;
 import com.pratham.model.Booking;
 import com.pratham.model.BookingStatus;
 import com.pratham.model.Customer;
+import com.pratham.util.AlertUtil;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -20,6 +21,7 @@ import javafx.stage.Stage;
 import java.awt.print.Book;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.Date;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
@@ -88,6 +90,30 @@ public class BookingController implements Initializable {
     @FXML
     void addBookingAndUpdate(ActionEvent event) {
 
+        if(textCID.getText().trim().isEmpty() ||
+                textRoomNo.getText().trim().isEmpty()
+                || dateCheckin.getValue() == null
+                || dateCheckout.getValue() == null){
+
+            AlertUtil.showWarning("Field(s) cannot be empty.");
+            return;
+        }
+
+        try{
+            long cid = Long.parseLong(textCID.getText().trim());
+            int roomNo = Integer.parseInt(textRoomNo.getText().trim());
+            LocalDate checkin = dateCheckin.getValue();
+            LocalDate checkout = dateCheckout.getValue();
+
+            BookingDAO.addBooking(cid, roomNo, checkin, checkout);
+
+            showBookings();
+
+        }catch (NumberFormatException e){
+            AlertUtil.showWarning("Invalid Input.");
+        }catch (Exception e){
+            AlertUtil.showWarning(e.getMessage());
+        }
     }
 
     @FXML
