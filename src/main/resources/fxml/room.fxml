@@ -27,6 +27,9 @@
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
+         <BorderPane.margin>
+            <Insets left="20.0" right="20.0" />
+         </BorderPane.margin>
       </TableView>
    </center>
    <top>
@@ -90,7 +93,7 @@
                         </TextField>
                      </children>
                   </VBox>
-                  <Button fx:id="addBtn" layoutX="185.0" layoutY="248.0" mnemonicParsing="false" onAction="#addRoomAndUpdate" style="-fx-background-color: #62109F;" text="Add" textFill="WHITE">
+                  <Button fx:id="addBtn" layoutX="185.0" layoutY="248.0" mnemonicParsing="false" onAction="#addRoomAndUpdate" prefHeight="24.0" prefWidth="63.0" style="-fx-background-color: #2f6b3f;" text="Add" textFill="WHITE">
                      <font>
                         <Font name="CaskaydiaCove NF Regular" size="13.0" />
                      </font>
@@ -134,24 +137,15 @@
                         <Font name="CaskaydiaCove NF Regular" size="13.0" />
                      </font>
                   </TextField>
-                  <Separator layoutX="400.0" layoutY="101.0" orientation="VERTICAL" prefHeight="144.0" prefWidth="2.0" />
-                  <Button fx:id="backBtn" layoutX="14.0" layoutY="39.0" mnemonicParsing="false" onAction="#gotoDashboard" opacity="0.7" text="⬅ Dashboard">
+                  <Button fx:id="backBtn" layoutX="14.0" layoutY="22.0" mnemonicParsing="false" onAction="#gotoDashboard" style="-fx-background-radius: 7; -fx-background-color: #62109f;" text="⬅ Dashboard" textFill="WHITE">
                      <font>
-                        <Font name="SF Pro Display Regular" size="13.0" />
+                        <Font name="SF Pro Display Medium" size="13.0" />
                      </font>
                      <cursor>
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
-                  <Button fx:id="showAvailBtn" layoutX="434.0" layoutY="287.0" mnemonicParsing="false" onAction="#showAvailRooms" style="-fx-background-color: #2F6B3F;" text="Show Available" textFill="WHITE">
-                     <font>
-                        <Font name="CaskaydiaCove NF Regular" size="13.0" />
-                     </font>
-                     <cursor>
-                        <Cursor fx:constant="HAND" />
-                     </cursor>
-                  </Button>
-                  <Button fx:id="showAllBtn" layoutX="260.0" layoutY="287.0" mnemonicParsing="false" onAction="#showAllRooms" prefHeight="24.0" prefWidth="110.0" style="-fx-background-color: #2F6B3F;" text="Show All" textFill="WHITE">
+                  <Button fx:id="showAvailBtn" layoutX="434.0" layoutY="287.0" mnemonicParsing="false" onAction="#showAvailRooms" style="-fx-background-color: #62109f;" text="Show Available" textFill="WHITE">
                      <font>
                         <Font name="CaskaydiaCove NF Regular" size="13.0" />
                      </font>
@@ -159,6 +153,15 @@
                         <Cursor fx:constant="HAND" />
                      </cursor>
                   </Button>
+                  <Button fx:id="showAllBtn" layoutX="260.0" layoutY="287.0" mnemonicParsing="false" onAction="#showAllRooms" prefHeight="24.0" prefWidth="110.0" style="-fx-background-color: #62109f;" text="Show All" textFill="WHITE">
+                     <font>
+                        <Font name="CaskaydiaCove NF Regular" size="13.0" />
+                     </font>
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor>
+                  </Button>
+                  <Separator layoutX="406.0" layoutY="103.0" orientation="VERTICAL" prefHeight="140.0" prefWidth="0.0" />
                </children>
             </AnchorPane>
          </children>

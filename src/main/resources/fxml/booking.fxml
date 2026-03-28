@@ -30,6 +30,9 @@
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
          </columnResizePolicy>
+         <BorderPane.margin>
+            <Insets left="20.0" right="20.0" />
+         </BorderPane.margin>
       </TableView>
    </bottom>
    <top>
@@ -77,14 +80,26 @@
                      <font>
                         <Font name="CaskaydiaCove NF Regular" size="13.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets bottom="3.0" />
+                     </VBox.margin>
                   </TextField>
                   <TextField fx:id="textRoomNo" prefWidth="120.0">
                      <font>
                         <Font name="CaskaydiaCove NF Regular" size="13.0" />
                      </font>
+                     <VBox.margin>
+                        <Insets bottom="3.0" />
+                     </VBox.margin>
                   </TextField>
-                  <DatePicker fx:id="dateCheckin" prefHeight="27.0" prefWidth="120.0" />
-                  <DatePicker fx:id="dateCheckout" layoutX="10.0" layoutY="58.0" prefHeight="27.0" prefWidth="120.0" />
+                  <DatePicker fx:id="dateCheckin" prefHeight="27.0" prefWidth="120.0">
+                     <VBox.margin>
+                        <Insets bottom="3.0" />
+                     </VBox.margin></DatePicker>
+                  <DatePicker fx:id="dateCheckout" layoutX="10.0" layoutY="58.0" prefHeight="27.0" prefWidth="120.0">
+                     <VBox.margin>
+                        <Insets bottom="3.0" />
+                     </VBox.margin></DatePicker>
                </children>
             </VBox>
             <Label layoutX="287.0" layoutY="26.0" text="Manage Bookings">
@@ -112,22 +127,21 @@
                   <Font name="SF Pro Display Bold" size="13.0" />
                </font>
             </Label>
-            <Separator layoutX="578.0" layoutY="110.0" orientation="VERTICAL" prefHeight="207.0" prefWidth="0.0" />
-            <Button fx:id="addButton" layoutX="118.0" layoutY="285.0" mnemonicParsing="false" onAction="#addBookingAndUpdate" text="Add">
+            <Button fx:id="addButton" layoutX="118.0" layoutY="293.0" mnemonicParsing="false" onAction="#addBookingAndUpdate" prefHeight="24.0" prefWidth="63.0" style="-fx-background-color: #2f6b3f;" text="Add" textFill="#f2eae0">
                <font>
                   <Font name="CaskaydiaCove NF Regular" size="13.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
-            <Button fx:id="checkoutButton" layoutX="779.0" layoutY="207.0" mnemonicParsing="false" onAction="#checkoutAndUpdate" text="Checkout">
+            <Button fx:id="checkoutButton" layoutX="779.0" layoutY="207.0" mnemonicParsing="false" onAction="#checkoutAndUpdate" style="-fx-background-color: #62109f;" text="Checkout" textFill="#f2eae0">
                <font>
                   <Font name="CaskaydiaCove NF Regular" size="13.0" />
                </font>
                <cursor>
                   <Cursor fx:constant="HAND" />
                </cursor></Button>
-            <Button fx:id="backButton" layoutX="14.0" layoutY="36.0" mnemonicParsing="false" onAction="#gotoDashboard" opacity="0.75" prefHeight="27.0" prefWidth="96.0" text="⬅ Dashboard">
+            <Button fx:id="backButton" layoutX="14.0" layoutY="36.0" mnemonicParsing="false" onAction="#gotoDashboard" prefHeight="27.0" prefWidth="96.0" style="-fx-background-color: #62109f;" text="⬅ Dashboard" textFill="#f2eae0">
                <font>
                   <Font name="SF Pro Display Medium" size="13.0" />
                </font>
@@ -150,7 +164,7 @@
                   <Font name="CaskaydiaCove NF Regular" size="13.0" />
                </font>
             </TextField>
-            <Button fx:id="removeBookingButton" layoutX="383.0" layoutY="208.0" mnemonicParsing="false" onAction="#removeBookingAndUpdate" text="Remove">
+            <Button fx:id="removeBookingButton" layoutX="383.0" layoutY="208.0" mnemonicParsing="false" onAction="#removeBookingAndUpdate" style="-fx-background-color: #dc0e0e;" text="Remove" textFill="#f2eae0">
                <font>
                   <Font name="CaskaydiaCove NF Regular" size="13.0" />
                </font>
@@ -158,7 +172,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
-            <Button fx:id="checkinButton" layoutX="697.0" layoutY="207.0" mnemonicParsing="false" onAction="#checkinAndUpdate" text="Checkin">
+            <Button fx:id="checkinButton" layoutX="697.0" layoutY="207.0" mnemonicParsing="false" onAction="#checkinAndUpdate" style="-fx-background-color: #62109f;" text="Checkin" textFill="#f2eae0">
                <font>
                   <Font name="CaskaydiaCove NF Regular" size="13.0" />
                </font>
@@ -166,6 +180,7 @@
                   <Cursor fx:constant="HAND" />
                </cursor>
             </Button>
+            <Separator layoutX="573.0" layoutY="107.0" orientation="VERTICAL" prefHeight="200.0" />
          </children>
       </AnchorPane>
    </top>
