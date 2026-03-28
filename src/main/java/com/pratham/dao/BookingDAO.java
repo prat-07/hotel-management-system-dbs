@@ -4,6 +4,7 @@ import com.pratham.db.DBUtil;
 import com.pratham.model.Booking;
 import com.pratham.model.BookingStatus;
 import com.pratham.util.AlertUtil;
+import javafx.scene.control.ButtonType;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -35,7 +36,46 @@ public class BookingDAO {
 
 
     public static void remBooking(int bookingId){
+        String fetchSql = "SELECT * FROM booking WHERE bid = ?";
+        String sql = "DELETE FROM booking WHERE bid = ?";
 
+        try(Connection connection = DBUtil.getConnection()){
+
+            //handle corner cases for deleting.
+            try(PreparedStatement ps = connection.prepareStatement(fetchSql)){
+                 ps.setInt(1, bookingId);
+                 ResultSet rs = ps.executeQuery();
+
+                //if not bookingId found
+                if(!rs.next()){
+                    AlertUtil.showWarning("No booking found.");
+                    return;
+                }
+
+                //Check if booking status is something other that BOOKED. Disallow removal.
+                if(!rs.getString("status").equals("BOOKED")){
+                    AlertUtil.showWarning("Cannot remove booking. Customer has already checked in.");
+                    return;
+                }
+
+
+            }catch (SQLException e){
+                System.out.println(e.getMessage());
+            }
+
+            //delete booking.
+            try(PreparedStatement ps = connection.prepareStatement(sql)){
+
+                ps.setInt(1, bookingId);
+
+                if(AlertUtil.takeConfirmation("Do you want to delete booking?") == ButtonType.OK)  {
+                    ps.executeUpdate();
+                    AlertUtil.showSuccess("Booking removed.");
+                }
+
+            }catch (SQLException e){ System.out.println(e.getMessage()); }
+        }
+        catch (Exception e){ System.out.println(e.getMessage()); }
     }
 
     public static void checkin(int bookingId){

@@ -110,9 +110,28 @@ public class BookingController implements Initializable {
             showBookings();
 
         }catch (NumberFormatException e){
-            AlertUtil.showWarning("Invalid Input.");
+            AlertUtil.showError("Invalid Input.");
         }catch (Exception e){
             AlertUtil.showWarning(e.getMessage());
+        }
+    }
+
+    @FXML
+    void removeBookingAndUpdate(ActionEvent event) {
+        if(textRemoveBooking.getText().trim().isEmpty()){
+            AlertUtil.showWarning("Field cannot be empty.");
+            return;
+        }
+
+        try{
+            int bid = Integer.parseInt(textRemoveBooking.getText().trim());
+
+            BookingDAO.remBooking(bid);
+
+            showBookings();
+
+        }catch (NumberFormatException e){
+            AlertUtil.showError("Invalid input.");
         }
     }
 
@@ -126,12 +145,6 @@ public class BookingController implements Initializable {
 
     }
 
-
-
-    @FXML
-    void removeBookingAndUpdate(ActionEvent event) {
-
-    }
 
     @FXML
     void gotoDashboard(ActionEvent event) throws IOException {
