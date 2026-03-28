@@ -1,6 +1,11 @@
 package com.pratham.controller;
 
+import com.pratham.dao.BookingDAO;
 import com.pratham.model.Booking;
+import com.pratham.model.BookingStatus;
+import com.pratham.model.Customer;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,8 +17,11 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 
+import java.awt.print.Book;
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
 import java.util.ResourceBundle;
 
@@ -23,23 +31,23 @@ public class BookingController implements Initializable {
     private Button backButton;
 
     @FXML
-    private TableView<?> bookingTable;
+    private TableView<Booking> bookingTable;
     @FXML
-    private TableColumn<?, ?> colBId;
+    private TableColumn<Booking, Integer> colBId;
     @FXML
-    private TableColumn<?, ?> colBookingStatus;
+    private TableColumn<Booking, BookingStatus> colBookingStatus;
     @FXML
-    private TableColumn<?, ?> colCContact;
+    private TableColumn<Booking, Long> colCContact;
     @FXML
-    private TableColumn<?, ?> colCId;
+    private TableColumn<Booking, Long> colCId;
     @FXML
-    private TableColumn<?, ?> colCheckin;
+    private TableColumn<Booking, LocalDate> colCheckin;
     @FXML
-    private TableColumn<?, ?> colCheckout;
+    private TableColumn<Booking, LocalDate> colCheckout;
     @FXML
-    private TableColumn<?, ?> colRoomNo;
+    private TableColumn<Booking, Integer> colRoomNo;
     @FXML
-    private TableColumn<?, ?> colTotDays;
+    private TableColumn<Booking, Integer> colTotDays;
 
 
     @FXML
@@ -67,7 +75,14 @@ public class BookingController implements Initializable {
 
 
     public void showBookings(){
+        List<Booking> bookings = BookingDAO.fetchAllBookings();
 
+        ObservableList<Booking> list = FXCollections.observableArrayList(bookings);
+        bookingTable.setItems(list);
+
+        //sort whether staying or not.
+        colBId.setSortType(TableColumn.SortType.ASCENDING);
+        bookingTable.getSortOrder().add(colBId);
     }
 
     @FXML
@@ -114,5 +129,7 @@ public class BookingController implements Initializable {
         colCheckout.setCellValueFactory(new PropertyValueFactory<>("checkoutDate"));
         colTotDays.setCellValueFactory(new PropertyValueFactory<>("noOfDays"));
         colBookingStatus.setCellValueFactory(new PropertyValueFactory<>("status"));
+
+        showBookings();
     }
 }

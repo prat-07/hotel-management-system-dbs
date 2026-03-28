@@ -21,6 +21,7 @@
             <TableColumn fx:id="colCheckOut" prefWidth="75.0" text="Check Out" />
             <TableColumn fx:id="colDaysStayed" prefWidth="90.0" text="Days Stayed" />
             <TableColumn fx:id="colTotPrice" prefWidth="75.0" text="Total Price" />
+            <TableColumn fx:id="colPayStat" prefWidth="116.5" text="Payment Status" />
         </columns>
          <columnResizePolicy>
             <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />

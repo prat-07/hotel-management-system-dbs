@@ -6,7 +6,7 @@ import java.time.temporal.ChronoUnit;
 public class Booking {
 
     private int bookingId;
-    private int customerId;
+    private long customerId;
     private long customerContact;
     private int roomNo;
     private LocalDate checkinDate;
@@ -14,7 +14,7 @@ public class Booking {
     private long noOfDays;
     private BookingStatus status;
 
-    public Booking(int bookingId, int customerId, long customerContact, int roomNo, LocalDate checkinDate, LocalDate checkoutDate) {
+    public Booking(int bookingId, long customerId, long customerContact, int roomNo, LocalDate checkinDate, LocalDate checkoutDate) {
         this.bookingId = bookingId;
         this.customerId = customerId;
         this.customerContact = customerContact;
@@ -27,7 +27,7 @@ public class Booking {
 
     //Getters
     public int getBookingId() { return bookingId; }
-    public int getCustomerId() { return customerId; }
+    public long getCustomerId() { return customerId; }
     public long getCustomerContact() { return customerContact; }
     public int getRoomNo() { return roomNo; }
     public LocalDate getCheckinDate() { return checkinDate; }
