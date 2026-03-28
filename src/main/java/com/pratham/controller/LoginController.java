@@ -1,5 +1,6 @@
 package com.pratham.controller;
 
+import com.pratham.dao.LoginDAO;
 import com.pratham.util.AlertUtil;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -29,20 +30,22 @@ public class LoginController {
 
     public void gotoDashboard(ActionEvent event) throws IOException {
 
-        String uname = unameTextField.getText().trim();
-        String pwd = pwdPasswordField.getText().trim();
+        final String uname = unameTextField.getText().trim();
+        final String pwd = pwdPasswordField.getText().trim();
 
-        Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/dashboard.fxml")));
-        Scene scene = new Scene(root);
-        Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+        if( uname.isEmpty() || pwd.isEmpty() ){
+            AlertUtil.showWarning("Field(s) cannot be empty.");
+            return;
+        }
 
-        if(!(uname.isEmpty()) && !(pwd.isEmpty())){
+        if(LoginDAO.validateLogin(uname, pwd)){
+            Parent root = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("/fxml/dashboard.fxml")));
+            Scene scene = new Scene(root);
+            Stage stage = (Stage)((Node)event.getSource()).getScene().getWindow();
+
             stage.setScene(scene);
             stage.show();
             stage.centerOnScreen();
-        }
-        else{
-            AlertUtil.showWarning("Field(s) cannot be empty.");
         }
 
     }
