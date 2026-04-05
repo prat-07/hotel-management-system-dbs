@@ -36,7 +36,7 @@
    <top>
       <AnchorPane prefHeight="370.0" prefWidth="800.0" style="-fx-background-color: #548DB0;" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="105.0" layoutY="126.0" text="Billling">
+            <Label layoutX="105.0" layoutY="126.0" text="Billing">
                <font>
                   <Font name="CaskaydiaCove NF Regular" size="50.0" />
                </font>
