@@ -74,10 +74,12 @@ DECLARE
 total_days INTEGER;
     room_price NUMERIC(10,2);
 BEGIN
+
     IF NEW.status = 'CHECKED_IN'
-       AND OLD.status IS DISTINCT FROM 'CHECKED_IN'
+       AND (TG_OP = 'INSERT' OR OLD.status IS DISTINCT FROM 'CHECKED_IN')
        AND NOT EXISTS (SELECT 1 FROM bill WHERE bid = NEW.bid)
     THEN
+
         total_days := GREATEST(NEW.check_out - NEW.check_in, 1);
 
 SELECT price INTO room_price
@@ -93,6 +95,7 @@ VALUES (
            total_days * room_price,
            NEW.cid
        );
+
 END IF;
 
 RETURN NEW;
@@ -131,9 +134,9 @@ $$ LANGUAGE plpgsql;
 -- =========================
 
 CREATE TRIGGER trg_create_bill
-    AFTER UPDATE ON booking
-    FOR EACH ROW
-    EXECUTE FUNCTION create_bill_on_checkin();
+    AFTER INSERT OR UPDATE ON booking
+                        FOR EACH ROW
+                        EXECUTE FUNCTION create_bill_on_checkin();
 
 CREATE TRIGGER trg_delete_booking_on_checkout
     AFTER UPDATE ON booking
